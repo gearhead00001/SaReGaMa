@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
-                Log.d("DBG - ","**************** INVOKED *****************");
+                Log.d("DBG - ","**************** INVOKED ******************");
 
                 double[][] notes = new double[][]{{196, 0.25}, {247, 0.5}, {262, 0.25}, {294, 0.5}, {262, 0.25}, {247, 0.5}, {262, 0.25}, {247, 0.5}};
                 for(int i=0; i<notes.length;i++) {
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                     audioTrack.play();                                             // Play the track
                 }
                 catch (Exception e){
-                    Log.d("DBG - ","**************** ERR OCCURRED *****************");
+                    Log.d("DBG - ","**************** ERR OCCURRED ******************");
                     return;
                 }
 
