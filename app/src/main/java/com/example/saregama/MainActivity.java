@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.Bundle;
 
+import com.example.saregama.sr_essentials.PlayMusic;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,17 +50,19 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("DBG - ","***************** INVOKED ******************");
 
-                double[][] notes = new double[][]{{196, 0.25}, {247, 0.5}, {262, 0.25}, {294, 0.5}, {262, 0.25}, {247, 0.5}, {262, 0.25}, {247, 0.5}};
-                for(int i=0; i<notes.length;i++) {
-                    Log.d("DBG - ","Exec "+ (i+1) +": "+ notes[i][0] + " " + notes[i][1] + "");
-                    playTones(notes[i][0], notes[i][1]);
-                    try {
-                        Thread.sleep(250);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+//                double[][] notes = new double[][]{{196, 0.25}, {247, 0.5}, {262, 0.25}, {294, 0.5}, {262, 0.25}, {247, 0.5}, {262, 0.25}, {247, 0.5}};
+//                for(int i=0; i<notes.length;i++) {
+//                    Log.d("DBG - ","Exec "+ (i+1) +": "+ notes[i][0] + " " + notes[i][1] + "");
+//                    playTones(notes[i][0], notes[i][1]);
+//                    try {
+//                        Thread.sleep(250);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
 
+                PlayMusic musicPlayer = new PlayMusic();
+                musicPlayer.startMusic();
             }
         });
     }
