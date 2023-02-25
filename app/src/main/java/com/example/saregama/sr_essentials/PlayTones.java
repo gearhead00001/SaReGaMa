@@ -1,5 +1,10 @@
 package com.example.saregama.sr_essentials;
 
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.AudioTrack;
+import android.util.Log;
+
 public class PlayTones {
     public static int sampleRate = 8000; //kHz
     private double sample[];
@@ -65,7 +70,35 @@ public class PlayTones {
     }
 
     public void playTone(){
+//        new Thread(){
+//            @Override
+//            public void run() {
 
+                AudioTrack audioTrack = null;                                    // Get audio track
+                try {
+                    audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,
+                            sampleRate, AudioFormat.CHANNEL_CONFIGURATION_MONO,
+                            AudioFormat.ENCODING_PCM_16BIT, (int)numSamples*2,
+                            AudioTrack.MODE_STATIC);
+                    audioTrack.write(generatedSnd, 0, generatedSnd.length);        // Load the track
+                    audioTrack.play();                                             // Play the track
+                }
+                catch (Exception e){
+                    Log.d("DBG - ","**************** ERR OCCURRED *******************");
+                    return;
+                }
 
-    }
+                int x =0;
+                do{                                                              // Monitor playback to find when done
+                    if (audioTrack != null)
+                        x = audioTrack.getPlaybackHeadPosition();
+                    else
+                        x = numSamples;
+                } while (x<numSamples);
+
+                if (audioTrack != null) audioTrack.release();
+
+            }
+//        }.start();
+//    }
 }

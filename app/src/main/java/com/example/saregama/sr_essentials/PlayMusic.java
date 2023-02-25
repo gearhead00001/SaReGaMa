@@ -38,11 +38,32 @@ public class PlayMusic {
         return anyMusic;
     }
 
+    public void leaveGap(int millis){
+        Log.d("Gap: ",""+millis);
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void playSequence(MusicNotes[] Notes, int curr, int end){
         if(curr < end){
             if(Notes[curr].teamNotes == null){
-                PlayTones tone = new PlayTones(Notes[curr]);
                 Log.d("Music - ","Freq : "+ Notes[curr].freq+" Dur :"+Notes[curr].duration+" "+curr+" "+ end +" ");
+                PlayTones tone = new PlayTones(Notes[curr]);
+                tone.playTone();
+                switch (String.valueOf(Notes[curr].duration)){
+                    case "0.125" : if(curr!=end-1 && Notes[curr+1].duration == 0.125){
+                                        leaveGap(62);
+                                     }else{
+                                         leaveGap(125);
+                                    }
+                                break;
+                    case "0.25" : leaveGap(125);
+                        break;
+                    default: leaveGap(250);
+                }
             }else{
                 playSequence(Notes[curr].teamNotes, 0, Notes[curr].teamNotes.length);
             }
